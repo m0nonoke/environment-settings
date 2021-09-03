@@ -1,0 +1,2 @@
+GREETING = 'Hello!'
+greeting = 'Goodbye!'
