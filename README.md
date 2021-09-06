@@ -1,7 +1,7 @@
 # Environment Settings
 The `environment_settings` package allows applications to manage multiple runtime environment configurations
-in a central location using settings stored as normal python modules. Inspired by the Django settings framework 
-(see https://docs.djangoproject.com/en/3.2/topics/settings/), the settings are loaded dynamically using a 
+in a central location using settings stored as normal python modules. Inspired by the [Django settings framework]
+(https://docs.djangoproject.com/en/dev/ref/settings/), the settings are loaded dynamically using a 
 context manager at the application entry point. Additionally, the environment_settings module provides a decorator
 that can be used to load the correct settings for automated tests.
 
