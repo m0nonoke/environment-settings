@@ -2,6 +2,11 @@ version: 2.1
 orbs:
   python: circleci/python@2.1.1
 jobs:
+  build:
+    steps:
+      - checkout
+      - run: python3 -m pip install .
+      - run: python3 -m pytest
   publish:
     executor: python/default
     steps:
@@ -11,8 +16,5 @@ jobs:
 workflows:
   main:
     jobs:
-      - python/test:
-          args: '--dev'
-          pkg-manager: pipenv
-          test-tool: pytest
+      - test
       - publish
