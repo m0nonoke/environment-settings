@@ -4,16 +4,16 @@ orbs:
 
 jobs:
   build-and-test:
+    executor: python/default
     docker:
       - image: cimg/python:3.8
     steps:
       - checkout
+      - python/install-packages:
+          pkg-manager: pip
       - run:
-          name: install dependencies
-          command: pip install -r test-requirements.txt
-      - run:
-          name: run tests
-          command: pytest
+          name: Run tests
+          command: python -m pytest
 
 workflows:
   main:
