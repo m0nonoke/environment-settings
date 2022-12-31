@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: install dependencies
-          command: pip install -r dev-requirements.txt
+          command: pip install -r test-requirements.txt
       - run:
           name: run tests
           command: pytest
