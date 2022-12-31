@@ -18,6 +18,6 @@ workflows:
     jobs:
       - python/test:
           args: '--dev'
-          pkg-manager: pipenv
+          pkg-manager: pip
           test-tool: pytest
       - build-and-test
