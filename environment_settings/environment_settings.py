@@ -2,11 +2,11 @@ import importlib
 from functools import wraps
 
 
-class ImproperyConfigured(Exception):
+class ImproperlyConfigured(Exception):
     """Improperly configured settings."""
 
 
-ImproperylConfigured = ImproperyConfigured
+ImproperylConfigured = ImproperlyConfigured
 
 
 class Settings:
@@ -15,16 +15,22 @@ class Settings:
 
     def __init__(self, package=None):
         self.package = package
+        self.name = None
+
+    # def __reduce__(self):
+    #     deserializer = self.__class__
+    #     serialized_data = (self.,)
+    #     return deserializer, serialized_data
 
     def __getattr__(self, name):
         if not self._wrapped:
             desc = f'settings {name}'
-            raise ImproperyConfigured(
+            raise ImproperlyConfigured(
                 f'Requested {desc}, but settings are not configured. You must define the settings.environment(name)'
             )
 
         if not name.isupper():
-            raise ImproperyConfigured(f'Setting {name} should be uppercase')
+            raise ImproperlyConfigured(f'Setting {name} should be uppercase')
 
         else:
             val = getattr(self._wrapped, name)
@@ -65,7 +71,7 @@ class Settings:
             return self
 
         else:
-            raise ImproperyConfigured(
+            raise ImproperlyConfigured(
                 f'Requested settings {self.name}, but settings {self._wrapped.settings_module} are already configured.'
             )
 
