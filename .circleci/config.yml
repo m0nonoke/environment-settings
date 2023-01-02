@@ -13,12 +13,10 @@ jobs:
       - run:
           name: Build package
           command: python -m build
-#      - run:
-#          name: Create build artifact
-#          command: tar -czf dist.tar.gz -C ./dist .
       - store_artifacts:
           path: ./dist
-#          destination: dist.tar.gz
+          destination: /artifacts
+
 
   publish-pypi:
     executor: python/default
