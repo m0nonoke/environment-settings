@@ -3,7 +3,17 @@ orbs:
   python: circleci/python@2.1.1
 
 jobs:
-  build-and-test:
+  build:
+    executor: python/default
+      steps:
+        - checkout
+        - run:
+        name: Install dependencies
+        command: pip install build
+        - run:
+            name: Build package
+            command: python -m build
+  publish:
     executor: python/default
     steps:
       - checkout
@@ -11,16 +21,20 @@ jobs:
           pkg-manager: pip
       - run:
           name: Install dependencies
-          command: pip install .[test]
+          command: pip install twine
       - run:
-          name: Run tests
-          command: python -m pytest
+          name: Publish
+          command: python -m twine
 
 workflows:
   main:
     jobs:
+      - build
       - python/test:
           pip-dependency-file: test-requirements.txt
           pkg-manager: pip
           test-tool: pytest
-      - build-and-test
+      - publish:
+        requires:
+          - build
+          - python/test
