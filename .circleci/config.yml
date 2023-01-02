@@ -29,7 +29,7 @@ jobs:
           command: pip install twine
       - run:
           name: Publish
-          command: python -m twine upload /artifacts/*
+          command: python -m twine upload ./artifacts/*
 
 workflows:
   main:
