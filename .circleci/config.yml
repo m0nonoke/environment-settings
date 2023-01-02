@@ -36,6 +36,6 @@ workflows:
           pkg-manager: pip
           test-tool: pytest
       - publish:
-        requires:
-          - build
-          - python/test
+          requires:
+            - build
+            - python/test
