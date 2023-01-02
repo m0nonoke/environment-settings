@@ -14,7 +14,7 @@ jobs:
           name: Build package
           command: python -m build
 
-  publish:
+  publish-pypi:
     executor: python/default
     steps:
       - checkout
@@ -25,7 +25,7 @@ jobs:
           command: pip install twine
       - run:
           name: Publish
-          command: python -m twine
+          command: python -m twine upload dist/*
 
 workflows:
   main:
@@ -35,7 +35,7 @@ workflows:
           pip-dependency-file: test-requirements.txt
           pkg-manager: pip
           test-tool: pytest
-      - publish:
+      - publish-pypi:
           requires:
             - build
             - python/test
