@@ -8,8 +8,8 @@ jobs:
     steps:
       - checkout
       - run:
-      name: Install dependencies
-      command: pip install build
+          name: Install dependencies
+          command: pip install build
       - run:
           name: Build package
           command: python -m build
