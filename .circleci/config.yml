@@ -5,7 +5,6 @@ orbs:
 jobs:
   build:
     executor: python/default
-    working_directory: /artifacts
     steps:
       - checkout
       - run:
@@ -18,7 +17,7 @@ jobs:
 #          name: Create build artifact
 #          command: tar -czf dist.tar.gz -C ./dist .
       - store_artifacts:
-          path: /tmp/dist
+          path: ./dist
 #          destination: dist.tar.gz
 
   publish-pypi:
