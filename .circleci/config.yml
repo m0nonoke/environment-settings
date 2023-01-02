@@ -25,6 +25,7 @@ jobs:
   publish-pypi:
     executor: python/default
     steps:
+      - checkout
       - attach_workspace:
           at: workspace
       - python/install-packages:
