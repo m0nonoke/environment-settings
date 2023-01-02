@@ -5,14 +5,15 @@ orbs:
 jobs:
   build:
     executor: python/default
-      steps:
-        - checkout
-        - run:
-        name: Install dependencies
-        command: pip install build
-        - run:
-            name: Build package
-            command: python -m build
+    steps:
+      - checkout
+      - run:
+      name: Install dependencies
+      command: pip install build
+      - run:
+          name: Build package
+          command: python -m build
+
   publish:
     executor: python/default
     steps:
