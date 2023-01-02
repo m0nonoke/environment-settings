@@ -20,7 +20,7 @@ workflows:
   main:
     jobs:
       - python/test:
-          args: '--dev'
-          pkg-manager: pipenv
+          pip-dependency-file: test-requirements.txt
+          pkg-manager: pip
           test-tool: pytest
       - build-and-test
