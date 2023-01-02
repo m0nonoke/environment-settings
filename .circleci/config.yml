@@ -38,4 +38,4 @@ workflows:
       - publish:
         requires:
           - build
-          - python/test
+          - test
