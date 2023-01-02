@@ -15,13 +15,18 @@ jobs:
           command: python -m build
       - store_artifacts:
           path: ./dist
-          destination: /artifacts
-
+      - run: mkdir -p workspace
+      - run: mv dist workspace/.
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - dist
 
   publish-pypi:
     executor: python/default
     steps:
-      - checkout
+      - attach_workspace:
+          at: workspace
       - python/install-packages:
           pkg-manager: pip
       - run:
@@ -32,7 +37,7 @@ jobs:
           command: echo `ls -lah`
       - run:
           name: Publish
-          command: python -m twine upload ./artifacts/*
+          command: python -m twine upload workspace/dist/*
 
 workflows:
   main:
